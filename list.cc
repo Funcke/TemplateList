@@ -105,6 +105,12 @@
         return returnValue;
     }
 
+    template <class T>
+    T List::Remove(int location)
+    {
+        
+    }
+
     template <class  T>
     Node<T>::Node()
     {
