@@ -108,7 +108,44 @@
     template <class T>
     T List::Remove(int location)
     {
+        T returnValue; 
         
+        if( location > this->size )
+        {
+            this->next = this->first;
+            while( this->next->next != this->last )
+            {
+                this->next = this->next->next;
+            }
+            
+            returnValue = this->last->content;
+            
+            this->next->next = nullptr;
+            this->last = this->next;
+        }
+        else if( loaction == 0 || location == 1 )
+        {
+            returnValue = this->first->content;
+            
+            this->first = this->first->next;
+            this->next = this->first;
+        }
+        else
+        {
+            int count = 1;
+            this->next = this->first;
+            while( count != (position - 1) )
+            {
+                this->next = this->next->next;
+                count++;
+            }
+            
+            returnValue = this->next->next->content;
+            this->next = this->next->next->next;
+        }
+        
+        return returnValue;
+
     }
 
     template <class  T>
