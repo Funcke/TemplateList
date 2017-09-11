@@ -2,9 +2,10 @@
 #ifndef _List_HH_
 #define _List_HH_
 
-template<class T>
-class Node
-{
+namespace List{
+    template<class T>
+    class Node
+    {
     public:
         T value;
         Node<T>* next;
@@ -12,7 +13,7 @@ class Node
         Node();
         Node(T val);
         Node(T val, Node<T>* next);
-};
+    };
 
     template <class T>
     class List
@@ -42,18 +43,5 @@ class Node
             void Move();
             void Move(int);
     };
-
-    /*
-    template<class T>
-    class Node
-    {
-        public:
-            T value;
-            Node<T>* next;
-            
-            Node();
-            Node(T val);
-            Node(T val, Node<t>* next);
-    };
-    */
+}
 #endif
