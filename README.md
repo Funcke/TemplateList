@@ -2,7 +2,7 @@
 
 TList is a small library for a linked list using the C++ TLS.
 
-# Usage:
+## Usage:
 clone the repository and copy the header- and the source-file
 in your project folder.
 
@@ -11,13 +11,9 @@ Include the header with:
 ```
 #include "list.h"
 ```
-the class itself is a member of the 
-````
-List
-```
-namespace.
+the class itself is a member of the ```List``` namespace.
 
-# Functionality
+## Functionality
 
 TList provides the following functionalities:
 
