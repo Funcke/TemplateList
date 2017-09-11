@@ -148,6 +148,35 @@
 
     }
 
+    template <class T>
+    void List::Insert(int position, T value)
+    {
+        if( position >= this->size )
+        {
+            this->last->next = new Node(value);
+            this->last = this->last->next;
+        }
+        else if( position == 0 || position == 1 )
+        {
+            Node* helper = new Node(value);
+            helper->next = this->first;
+            this->first = helper;
+        }
+        else
+        {
+            this->next = this->first;
+            int count = 0;
+            
+            while( count + 1 != position )
+            {
+                Node* helper = new Node(value);
+                helper->next = this->next->next;
+                this->next->next = helper;
+            }
+        }
+    }
+
+
     template <class  T>
     Node<T>::Node()
     {
