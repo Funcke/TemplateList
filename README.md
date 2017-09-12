@@ -17,23 +17,8 @@ the class itself is a member of the ```List``` namespace.
 
 TList provides the following functionalities:
 
-+ 
-```cpp
-void Add(T value);
-```
-+ 
-```cpp
-void Add(Node* target); 
-```
-+ 
-```cpp
-T    Remove(); 
-```
-+ 
-```cpp
-T    Remove(int position); 
-```
-+
-```cpp
-void Insert(int, T); 
-```
++ ```void Add(T value); ```
++ ```void Add(Node* target); ```
++ ```T    Remove(); ```
++ ```T    Remove(int position); ```
++```void Insert(int, T); ```
