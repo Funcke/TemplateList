@@ -17,18 +17,18 @@ the class itself is a member of the ```List``` namespace.
 
 TList provides the following functionalities:
 
-+ ````cpp
++ ```cpp
   void Add(T value); 
-  cpp````
-+ ````cpp
+  cpp```
++ ```cpp
 void Add(Node* target); 
-cpp````
-+ ````cpp
+cpp```
++ ```cpp
 T    Remove(); 
-cpp````
-+ ````cpp
+cpp```
++ ```cpp
 T    Remove(int position); 
-cpp````
-+ ````cpp
+cpp```
++ ```cpp
 void Insert(int, T); 
-cpp````
+cpp```
