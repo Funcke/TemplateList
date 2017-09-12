@@ -177,6 +177,35 @@ namespace List{
         }
     }
 
+    template <class T>
+    void List::Insert(int position, Node<T>* target)
+    {
+        if( target != nullptr )
+        {
+            if( position == 0 || position == 1)
+            {
+                target->next = first;
+                first = target;
+            }
+            else if ( position > this->size )
+            {
+                this->last->next =  target;
+                this->last  = target;
+            }
+            else
+            {
+                this->next = this->first;
+                int count = 1;
+                while(count + 1 == position){
+                    this->next = this->next->next;
+                    count++;
+                }
+                target->next = this->next->next;
+                this->next->next = target;
+            }
+        }
+    }
+
 
     template <class  T>
     Node<T>::Node()
