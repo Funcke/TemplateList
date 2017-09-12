@@ -8,17 +8,17 @@ in your project folder.
 
 Include the header with:
 
-```
+```cpp
 #include "list.h"
 ```
 the class itself is a member of the ```List``` namespace.
 
-## Functionality
+## API
 
 TList provides the following functionalities:
 
-+ void Add(T value);
-+ void Add(Node* target);
-+ T    Remove();
-+ T    Remove(int position);
-+ void Insert(int, T);
++ ```cpp void Add(T value); ```
++ ```cpp void Add(Node* target); ```
++ ```cpp T    Remove(); ```
++ ```cpp T    Remove(int position); ```
++ ```cpp void Insert(int, T); ```
