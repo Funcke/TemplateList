@@ -206,6 +206,12 @@ namespace List{
         }
     }
 
+    template <class T>
+    void List::Insert(T value)
+    {
+        this->last->next = new Node<T>(value);
+        this->last = this->last->next;
+    } 
 
     template <class  T>
     Node<T>::Node()
