@@ -42,6 +42,8 @@ namespace List{
             T Show();
             void Move();
             void Move(int);
+            Node* Begin();
+            Node* End();
     };
 }
 #endif
