@@ -213,6 +213,16 @@ namespace List{
         this->last = this->last->next;
     } 
 
+    template <class T>
+    void List::Insert(Node<T>* target)
+    {
+        if( target != nullptr )
+        {
+            this->last->next = target;
+            this->last =  this->last->next;
+        }
+    }
+    
     template <class  T>
     Node<T>::Node()
     {
