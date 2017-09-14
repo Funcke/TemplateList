@@ -2,6 +2,10 @@
 
 TList is a small library for a linked list using the C++ TLS.
 
+## Requirements:
+For using this library you only need a C++11
+compatible C++ compiler;
+
 ## Usage:
 clone the repository and copy the header- and the source-file
 in your project folder.
@@ -17,8 +21,10 @@ the class itself is a member of the ```List``` namespace.
 
 TList provides the following functionalities:
 
-+ ```void Add(T value); ```
-+ ```void Add(Node* target); ```
++ ```void Add(T); ```
++ ```void Add(Node<T>*); ```
 + ```T    Remove(); ```
-+ ```T    Remove(int position); ```
++ ```T    Remove(int); ```
 +```void Insert(int, T); ```
++```void Insert(T);```
++```void Insert(Node<T>*);```
