@@ -223,6 +223,12 @@ namespace List{
         }
     }
     
+    template <class T>
+    T List::Show()
+    {
+        return this->next->value;
+    }
+    
     template <class  T>
     Node<T>::Node()
     {
