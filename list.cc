@@ -230,6 +230,26 @@ namespace List{
         return this->next->value;
     }
     
+        template <class T>
+    T List::Show(int position)
+    {
+        if( position == this->size )
+        {
+            this->next = this->first;
+            count = 1;
+            while( count != position )
+            {
+                this->next = this->next->next;
+            }
+    
+            return this->next->value;
+        }
+        else
+        {
+            return default(T);
+        }
+    }
+    
     template <class  T>
     Node<T>::Node()
     {
