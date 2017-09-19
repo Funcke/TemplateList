@@ -250,6 +250,15 @@ namespace List{
         }
     }
     
+    template <class T>
+    void List::Move()
+    {
+        if( this->next->next != nullptr )
+        {
+            this->next = this->next->next;
+        }
+    }
+    
     template <class  T>
     Node<T>::Node()
     {
