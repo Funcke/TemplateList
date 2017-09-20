@@ -259,6 +259,28 @@ namespace List{
         }
     }
     
+    template <class T>
+    void List::Move(int position)
+    {
+        this->next = this->first;
+        if( position > this->size )
+        {
+            this->next = this->last;
+        }
+        else  if( position < 1 )
+        {
+            this->next = this->first;
+        }
+        else
+        {
+            int count = 1;
+            while ( count != position )
+            {
+                this->next  = this->next->next;
+            }
+        }
+    }
+    
     template <class  T>
     Node<T>::Node()
     {
