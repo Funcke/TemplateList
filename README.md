@@ -25,6 +25,8 @@ TList provides the following functionalities:
 + ```void Add(Node<T>*); ```
 + ```T    Remove(); ```
 + ```T    Remove(int); ```
-+```void Insert(int, T); ```
-+```void Insert(T);```
++```void Insert(int, T); ``` 
++```void Insert(T);``` 
 +```void Insert(Node<T>*);```
++```T    Show();```
++```T    Show(int);```
