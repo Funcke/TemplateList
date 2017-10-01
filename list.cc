@@ -120,14 +120,14 @@ namespace List{
                 this->next = this->next->next;
             }
             
-            returnValue = this->last->content;
+            returnValue = this->last->value;
             
             this->next->next = nullptr;
             this->last = this->next;
         }
         else if( loaction == 0 || location == 1 )
         {
-            returnValue = this->first->content;
+            returnValue = this->first->value;
             
             this->first = this->first->next;
             this->next = this->first;
@@ -142,7 +142,7 @@ namespace List{
                 count++;
             }
             
-            returnValue = this->next->next->content;
+            returnValue = this->next->next->value;
             this->next = this->next->next->next;
         }
         
