@@ -1,6 +1,6 @@
 # TList [![Supported by bytes](http://art.bytes.gq/badge.svg)](https://bytes.gq)
 
-TList is a small library for a linked list using the C++ TLS.
+TList is a small library for a linked list using the C++ STL.
 
 ## Requirements:
 For using this library you only need a C++11
