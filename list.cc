@@ -1,5 +1,6 @@
 #include <cstddef>
 #include "list.h"
+#include "node.h"
 
 
 namespace List{
@@ -21,6 +22,7 @@ namespace List{
         this->size = 1;
     }
 
+    /*
     template <class T>
     List<T>::List(Node<T>* init)
     {
@@ -48,6 +50,7 @@ namespace List{
         }
         this->size = 1;
     }
+    */
 
     template <class T>
     void List<T>::Add(T value)
@@ -58,6 +61,7 @@ namespace List{
         this->size += 1;
     }
 
+    /*
     template <class T>
     void List<T>::Add(Node<T>* target)
     {
@@ -68,6 +72,7 @@ namespace List{
             this->size += 1;
         }
     }
+    */
 
     template <class T>
     T List<T>::Remove()
@@ -178,6 +183,7 @@ namespace List{
         }
     }
 
+    /*
     template <class T>
     void List::Insert(int position, Node<T>* target)
     {
@@ -206,6 +212,7 @@ namespace List{
             }
         }
     }
+    */
 
     template <class T>
     void List::Insert(T value)
@@ -214,6 +221,7 @@ namespace List{
         this->last = this->last->next;
     } 
 
+    /*
     template <class T>
     void List::Insert(Node<T>* target)
     {
@@ -223,7 +231,8 @@ namespace List{
             this->last =  this->last->next;
         }
     }
-    
+    */
+
     template <class T>
     T List::Show()
     {

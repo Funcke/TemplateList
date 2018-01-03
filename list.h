@@ -3,18 +3,6 @@
 #define _List_HH_
 
 namespace List{
-    template<class T>
-    class Node
-    {
-    public:
-        T value;
-        Node<T>* next;
-        
-        Node();
-        Node(T val);
-        Node(T val, Node<T>* next);
-    };
-
     template <class T>
     class List
     {
@@ -28,17 +16,17 @@ namespace List{
             //constructor
             List();
             List(T val);
-            List(Node<T>* init);
+            //List(Node<T>* init);
 
             //methods
             void Add(T value);
-            void Add(Node<T>* target);
+            //void Add(Node<T>* target);
             T Remove();
             T Remove(int position);
             void Insert(int, T);
-            void Insert(int, Node<T>*);
+            //void Insert(int, Node<T>*);
             void Insert(T);
-            void Insert(Node<T>*);
+            //void Insert(Node<T>*);
             T Show();
             void Move();
             void Move(int);
