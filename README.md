@@ -6,6 +6,8 @@ TList is a small library for a linked list using the C++ STL.
 For using this library you only need a C++11
 compatible C++ compiler;
 
+Developed and tested on x64 platform.
+
 ## Usage:
 clone the repository and copy the header- and the source-file
 in your project folder.
