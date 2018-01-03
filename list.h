@@ -8,7 +8,7 @@ namespace List{
     {
         private:
             Node<T>* first;
-            Node<T>* next;
+            Node<T>* current;
             Node<T>* last;
             int size;
 

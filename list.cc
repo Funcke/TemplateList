@@ -8,8 +8,8 @@ namespace List{
     List<T>::List()
     {
         this->first = new Node<T>();
-        this->next = this->first->next;
-        this->last = this->next;
+        this->current = this->first->next;
+        this->last = this->current;
         this->size = 1;
     }
 
@@ -17,8 +17,8 @@ namespace List{
     List<T>::List(T val)
     {
         this->first = new Node<T>(val);
-        this->next = this->first->next;
-        this->last = this->next;
+        this->current = this->first->next;
+        this->last = this->current;
         this->size = 1;
     }
 
@@ -79,13 +79,13 @@ namespace List{
     {
         Node<T>* helper = this->first;
         T returnValue;
-        if( this->first == this->next )
+        if( this->first == this->current )
         {
-            if( this->next->next == nullptr)
+            if( this->current->next == nullptr)
             {
                 returnValue = this->first->value;
                 this->first = new Node<T>();
-                this->next = this->first;
+                this->current = this->first;
                 this->last = this->first;
                 return returnValue;
             }
@@ -93,20 +93,20 @@ namespace List{
             {
                 returnValue = this->first->value;
                 this->first = this->first->next;
-                this->next = this->first;
+                this->current = this->first;
             }
         }
         else
         {
             helper = this->first;
-            while( helper->next != this->next )
+            while( helper->next != this->current )
             {
                 helper = helper->next;
             }
 
             returnValue = helper->next->value;
-            helper->next = this->next->next;
-            this->next = helper;
+            helper->next = this->current->next;
+            this->current = helper;
         }
 
         return returnValue;
@@ -119,36 +119,36 @@ namespace List{
         
         if( location > this->size )
         {
-            this->next = this->first;
-            while( this->next->next != this->last )
+            this->current = this->first;
+            while( this->current->next != this->last )
             {
-                this->next = this->next->next;
+                this->current = this->current->next;
             }
             
             returnValue = this->last->value;
             
-            this->next->next = nullptr;
-            this->last = this->next;
+            this->current->next = nullptr;
+            this->last = this->current;
         }
         else if( loaction == 0 || location == 1 )
         {
             returnValue = this->first->value;
             
             this->first = this->first->next;
-            this->next = this->first;
+            this->current = this->first;
         }
         else
         {
             int count = 1;
-            this->next = this->first;
+            this->current = this->first;
             while( count != (position - 1) )
             {
-                this->next = this->next->next;
+                this->current = this->current->next;
                 count++;
             }
             
-            returnValue = this->next->next->value;
-            this->next = this->next->next->next;
+            returnValue = this->current->next->value;
+            this->current = this->current->next->next;
         }
         
         return returnValue;
@@ -171,14 +171,14 @@ namespace List{
         }
         else
         {
-            this->next = this->first;
+            this->current = this->first;
             int count = 0;
             
             while( count + 1 != position )
             {
                 Node* helper = new Node(value);
-                helper->next = this->next->next;
-                this->next->next = helper;
+                helper->next = this->current->next;
+                this->current->next = helper;
             }
         }
     }
@@ -236,7 +236,7 @@ namespace List{
     template <class T>
     T List::Show()
     {
-        return this->next->value;
+        return this->current->value;
     }
     
         template <class T>
@@ -244,14 +244,14 @@ namespace List{
     {
         if( position == this->size )
         {
-            this->next = this->first;
+            this->current = this->first;
             count = 1;
             while( count != position )
             {
-                this->next = this->next->next;
+                this->current = this->current->next;
             }
     
-            return this->next->value;
+            return this->current->value;
         }
         else
         {
@@ -262,51 +262,31 @@ namespace List{
     template <class T>
     void List::Move()
     {
-        if( this->next->next != nullptr )
+        if( this->current->next != nullptr )
         {
-            this->next = this->next->next;
+            this->current = this->current->next;
         }
     }
     
     template <class T>
     void List::Move(int position)
     {
-        this->next = this->first;
+        this->current = this->first;
         if( position > this->size )
         {
-            this->next = this->last;
+            this->current = this->last;
         }
         else  if( position < 1 )
         {
-            this->next = this->first;
+            this->current = this->first;
         }
         else
         {
             int count = 1;
             while ( count != position )
             {
-                this->next  = this->next->next;
+                this->current  = this->current->next;
             }
         }
-    }
-    
-    template <class  T>
-    Node<T>::Node()
-    {
-        this->next = nullptr;
-    }
-
-    template <class T>
-    Node<T>::Node(T val)
-    {
-        this->value = val;
-        this->next = nullptr;
-    }
-
-    template <class T>
-    Node<T>::Node(T val, Node<T>* next)
-    {
-        this->value = val;
-        this->next = next;
     }
 }
