@@ -1,7 +1,7 @@
-#inclued <cstddef>
+#include <cstddef>
 #include "node.h"
 
-using namespace List {
+namespace List {
     template <class T>
     Node<T>::Node()
     {

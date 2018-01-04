@@ -16,22 +16,24 @@ namespace List{
             //constructor
             List();
             List(T val);
-            //List(Node<T>* init);
+            List(List<T>* src);
 
             //methods
             void Add(T value);
-            //void Add(Node<T>* target);
+            void Add(List<T>* source);
             T Remove();
             T Remove(int position);
             void Insert(int, T);
-            //void Insert(int, Node<T>*);
+            void Insert(int position, List<T>* source);
             void Insert(T);
-            //void Insert(Node<T>*);
+            void Insert(List<T>* source);
             T Show();
             void Move();
             void Move(int);
-            Node* Begin();
-            Node* End();
+            Node* First();
+            Node* Last();
+            int Size();
+            std::vector<T>* List<T>::ToVector()
     };
 }
 #endif

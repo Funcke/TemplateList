@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <vector>
 #include "list.h"
 #include "node.h"
 
@@ -22,35 +23,13 @@ namespace List{
         this->size = 1;
     }
 
-    /*
     template <class T>
-    List<T>::List(Node<T>* init)
-    {
-        if( init != nullptr )
-        {
-            this->first = init;
-            if( init->next != nullptr ){
-                this->next = init->next;
-                while( init->next != nullptr ){
-                    init = init->next;
-                }
-                this->last =  init;
-            }
-            else
-            {
-                this->next = this->first->next;
-                this->last = this->next;
-            }
-        }
-        else
-        {
-            this->first = new Node<T>();
-            this->next = this->first->next;
-            this->last = this->next;
-        }
-        this->size = 1;
+    List<T>::List(List<T>* source) {
+        this->first = source->First();
+        this->current = this->first;
+        this->last = source->Last();
+        this->size = spurce->Size();
     }
-    */
 
     template <class T>
     void List<T>::Add(T value)
@@ -73,6 +52,9 @@ namespace List{
         }
     }
     */
+
+    template <class T>
+
 
     template <class T>
     T List<T>::Remove()
@@ -288,5 +270,29 @@ namespace List{
                 this->current  = this->current->next;
             }
         }
+    }
+
+    const Node* List<T>::First() {
+        return this->first;
+    }
+
+    const Node* List<T>::Last() {
+        return this->last;
+    }
+
+    int List<T>::Size() {
+        return this->size;
+    }
+
+    std::vector<T>* List<T>::ToVector() {
+        std::vector<T> vec;
+        this->current = this->first;
+
+        do{
+            vec.push_back(this->current->value);
+            this->current = this->current->next;
+        }while(this->current != this->last);
+
+        return &vec;
     }
 }
