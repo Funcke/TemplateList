@@ -28,11 +28,11 @@ namespace List{
         this->first = source->First();
         this->current = this->first;
         this->last = source->Last();
-        this->size = spurce->Size();
+        this->size = source->Size();
     }
 
     template <class T>
-    void List<T>::Add(T value)
+    bool List<T>::Add(T value)
     {
         Node<T>* helper = new Node<T>(value);
         this->last->next = helper;
@@ -40,21 +40,16 @@ namespace List{
         this->size += 1;
     }
 
-    /*
     template <class T>
-    void List<T>::Add(Node<T>* target)
+    bool List<T>::Add(List<T>* source) 
     {
-        if( target != nullptr )
+        if( source != nullptr )
         {
-            this->last->next = target;
-            this->last = this->last->next;
-            this->size += 1;
+            this->last->next = source->First();
+            this->last = source->Last();
+            this->size += source->Size;
         }
     }
-    */
-
-    template <class T>
-
 
     template <class T>
     T List<T>::Remove()
@@ -95,7 +90,7 @@ namespace List{
     }
 
     template <class T>
-    T List::Remove(int location)
+    T List<T>::Remove(int location)
     {
         T returnValue; 
         
@@ -112,7 +107,7 @@ namespace List{
             this->current->next = nullptr;
             this->last = this->current;
         }
-        else if( loaction == 0 || location == 1 )
+        else if( location == 0 || location == 1 )
         {
             returnValue = this->first->value;
             
@@ -123,7 +118,7 @@ namespace List{
         {
             int count = 1;
             this->current = this->first;
-            while( count != (position - 1) )
+            while( count != (location - 1) )
             {
                 this->current = this->current->next;
                 count++;
@@ -138,16 +133,16 @@ namespace List{
     }
 
     template <class T>
-    void List::Insert(int position, T value)
+    void List<T>::Insert(int position, T value)
     {
         if( position >= this->size )
         {
-            this->last->next = new Node(value);
+            this->last->next = new Node<T>(value);
             this->last = this->last->next;
         }
         else if( position == 0 || position == 1 )
         {
-            Node* helper = new Node(value);
+            Node<T>* helper = new Node<T>(value);
             helper->next = this->first;
             this->first = helper;
         }
@@ -158,7 +153,7 @@ namespace List{
             
             while( count + 1 != position )
             {
-                Node* helper = new Node(value);
+                Node<T>* helper = new Node<T>(value);
                 helper->next = this->current->next;
                 this->current->next = helper;
             }
@@ -167,82 +162,59 @@ namespace List{
 
     /*
     template <class T>
-    void List::Insert(int position, Node<T>* target)
+    void List::Insert(int position, List<T>* source) 
     {
-        if( target != nullptr )
+        if(source != nullptr)
         {
-            if( position == 0 || position == 1)
+            if(position == 0 || position == 1) 
             {
-                target->next = first;
-                first = target;
-            }
-            else if ( position > this->size )
-            {
-                this->last->next =  target;
-                this->last  = target;
-            }
-            else
-            {
-                this->next = this->first;
-                int count = 1;
-                while(count + 1 == position){
-                    this->next = this->next->next;
-                    count++;
-                }
-                target->next = this->next->next;
-                this->next->next = target;
+
             }
         }
     }
     */
 
     template <class T>
-    void List::Insert(T value)
+    void List<T>::Insert(T value)
     {
         this->last->next = new Node<T>(value);
         this->last = this->last->next;
     } 
 
-    /*
     template <class T>
-    void List::Insert(Node<T>* target)
-    {
-        if( target != nullptr )
-        {
-            this->last->next = target;
-            this->last =  this->last->next;
-        }
+    void List<T>::Insert(List<T>* source) {
+        this->Add(source);
     }
-    */
 
     template <class T>
-    T List::Show()
+    T List<T>::Show()
     {
         return this->current->value;
     }
     
         template <class T>
-    T List::Show(int position)
+    T List<T>::Show(int position)
     {
-        if( position == this->size )
+        if( position <= this->size && position >= 1)
         {
             this->current = this->first;
-            count = 1;
+            int count = 1;
             while( count != position )
             {
                 this->current = this->current->next;
+                count++;
             }
     
             return this->current->value;
         }
         else
         {
-            return default(T);
+            return (T)NULL;
         }
     }
     
     template <class T>
-    void List::Move()
+    void List<T>::Move()
     {
         if( this->current->next != nullptr )
         {
@@ -251,7 +223,7 @@ namespace List{
     }
     
     template <class T>
-    void List::Move(int position)
+    void List<T>::Move(int position)
     {
         this->current = this->first;
         if( position > this->size )
@@ -272,18 +244,22 @@ namespace List{
         }
     }
 
-    const Node* List<T>::First() {
+    template <class T>
+    const Node<T>* List<T>::First() {
         return this->first;
     }
 
-    const Node* List<T>::Last() {
+    template <class T>
+    const Node<T>* List<T>::Last() {
         return this->last;
     }
 
+    template <class T>
     int List<T>::Size() {
         return this->size;
     }
 
+    /*template <class T>
     std::vector<T>* List<T>::ToVector() {
         std::vector<T> vec;
         this->current = this->first;
@@ -293,6 +269,7 @@ namespace List{
             this->current = this->current->next;
         }while(this->current != this->last);
 
-        return &vec;
+        return vec;
     }
+    */
 }

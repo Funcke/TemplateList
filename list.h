@@ -2,7 +2,10 @@
 #ifndef _List_HH_
 #define _List_HH_
 
+#include "node.h"
+
 namespace List{
+    using namespace std;
     template <class T>
     class List
     {
@@ -19,21 +22,22 @@ namespace List{
             List(List<T>* src);
 
             //methods
-            void Add(T value);
-            void Add(List<T>* source);
+            bool Add(T value);
+            bool Add(List<T>* source);
             T Remove();
             T Remove(int position);
             void Insert(int, T);
-            void Insert(int position, List<T>* source);
+            //void Insert(int position, List<T>* source);
             void Insert(T);
             void Insert(List<T>* source);
             T Show();
+            T Show(int position);
             void Move();
             void Move(int);
-            Node* First();
-            Node* Last();
+            const Node<T>* First();
+            const Node<T>* Last();
             int Size();
-            std::vector<T>* List<T>::ToVector()
+            //std::vector<T>* List<T>::ToVector()
     };
 }
 #endif

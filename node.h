@@ -1,7 +1,7 @@
 #ifndef _NODE_HH_
 #define _NODE_HH_
 
-using namespace List {
+namespace List {
     template<class T>
     class Node
     {
