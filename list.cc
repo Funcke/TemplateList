@@ -41,7 +41,7 @@ namespace List{
     }
 
     template <class T>
-    bool List<T>::Add(List<T>* source) 
+    bool List<T>::Add(List<T>* source)
     {
         if( source != nullptr )
         {
@@ -92,8 +92,8 @@ namespace List{
     template <class T>
     T List<T>::Remove(int location)
     {
-        T returnValue; 
-        
+        T returnValue;
+
         if( location > this->size )
         {
             this->current = this->first;
@@ -101,16 +101,16 @@ namespace List{
             {
                 this->current = this->current->next;
             }
-            
+
             returnValue = this->last->value;
-            
+
             this->current->next = nullptr;
             this->last = this->current;
         }
         else if( location == 0 || location == 1 )
         {
             returnValue = this->first->value;
-            
+
             this->first = this->first->next;
             this->current = this->first;
         }
@@ -123,11 +123,11 @@ namespace List{
                 this->current = this->current->next;
                 count++;
             }
-            
+
             returnValue = this->current->next->value;
             this->current = this->current->next->next;
         }
-        
+
         return returnValue;
 
     }
@@ -150,7 +150,7 @@ namespace List{
         {
             this->current = this->first;
             int count = 0;
-            
+
             while( count + 1 != position )
             {
                 Node<T>* helper = new Node<T>(value);
@@ -162,11 +162,11 @@ namespace List{
 
     /*
     template <class T>
-    void List::Insert(int position, List<T>* source) 
+    void List::Insert(int position, List<T>* source)
     {
         if(source != nullptr)
         {
-            if(position == 0 || position == 1) 
+            if(position == 0 || position == 1)
             {
 
             }
@@ -179,7 +179,7 @@ namespace List{
     {
         this->last->next = new Node<T>(value);
         this->last = this->last->next;
-    } 
+    }
 
     template <class T>
     void List<T>::Insert(List<T>* source) {
@@ -191,7 +191,7 @@ namespace List{
     {
         return this->current->value;
     }
-    
+
         template <class T>
     T List<T>::Show(int position)
     {
@@ -204,7 +204,7 @@ namespace List{
                 this->current = this->current->next;
                 count++;
             }
-    
+
             return this->current->value;
         }
         else
@@ -212,7 +212,7 @@ namespace List{
             return (T)NULL;
         }
     }
-    
+
     template <class T>
     void List<T>::Move()
     {
@@ -221,7 +221,7 @@ namespace List{
             this->current = this->current->next;
         }
     }
-    
+
     template <class T>
     void List<T>::Move(int position)
     {
@@ -245,13 +245,13 @@ namespace List{
     }
 
     template <class T>
-    const Node<T>* List<T>::First() {
-        return this->first;
+    const T List<T>::First() {
+        return this->first->value;
     }
 
     template <class T>
-    const Node<T>* List<T>::Last() {
-        return this->last;
+    const T List<T>::Last() {
+        return this->last->value;
     }
 
     template <class T>
