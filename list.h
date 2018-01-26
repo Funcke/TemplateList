@@ -2,6 +2,7 @@
 #ifndef _List_HH_
 #define _List_HH_
 
+#include <mutex>
 #include "node.h"
 
 namespace List{
@@ -14,6 +15,7 @@ namespace List{
             Node<T>* current;
             Node<T>* last;
             int size;
+            std::mutex lock;
 
         public:
             //constructor

@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <vector>
+#include <mutex>
 #include "list.h"
 #include "node.h"
 
@@ -8,6 +9,7 @@ namespace List{
     template <class T>
     List<T>::List()
     {
+        this->lock = new std::mutex();
         this->first = new Node<T>();
         this->current = this->first->next;
         this->last = this->current;
@@ -17,6 +19,7 @@ namespace List{
     template <class T>
     List<T>::List(T val)
     {
+        this->lock = new std::mutex();
         this->first = new Node<T>(val);
         this->current = this->first->next;
         this->last = this->current;
@@ -24,7 +27,9 @@ namespace List{
     }
 
     template <class T>
-    List<T>::List(List<T>* source) {
+    List<T>::List(List<T>* source)
+    {
+        this->lock = new std::mutex();
         this->first = source->First();
         this->current = this->first;
         this->last = source->Last();
@@ -34,26 +39,31 @@ namespace List{
     template <class T>
     bool List<T>::Add(T value)
     {
+        this->lock->lock();
         Node<T>* helper = new Node<T>(value);
         this->last->next = helper;
         this->last = this->last->next;
         this->size += 1;
+        this->lock->unlock();
     }
 
     template <class T>
-    bool List<T>::Add(List<T>* source) 
+    bool List<T>::Add(List<T>* source)
     {
         if( source != nullptr )
         {
+            this->lock->lock();
             this->last->next = source->First();
             this->last = source->Last();
             this->size += source->Size;
+            this->lock->unlock();
         }
     }
 
     template <class T>
     T List<T>::Remove()
     {
+        this->lock->lock();
         Node<T>* helper = this->first;
         T returnValue;
         if( this->first == this->current )
@@ -85,15 +95,16 @@ namespace List{
             helper->next = this->current->next;
             this->current = helper;
         }
-
+        this->lock->unlock();
         return returnValue;
     }
 
     template <class T>
     T List<T>::Remove(int location)
     {
-        T returnValue; 
-        
+        this->lock->lock();
+        T returnValue;
+
         if( location > this->size )
         {
             this->current = this->first;
@@ -101,16 +112,16 @@ namespace List{
             {
                 this->current = this->current->next;
             }
-            
+
             returnValue = this->last->value;
-            
+
             this->current->next = nullptr;
             this->last = this->current;
         }
         else if( location == 0 || location == 1 )
         {
             returnValue = this->first->value;
-            
+
             this->first = this->first->next;
             this->current = this->first;
         }
@@ -123,11 +134,13 @@ namespace List{
                 this->current = this->current->next;
                 count++;
             }
-            
+
             returnValue = this->current->next->value;
             this->current = this->current->next->next;
         }
-        
+
+        this->lock->unlock();
+
         return returnValue;
 
     }
@@ -135,6 +148,7 @@ namespace List{
     template <class T>
     void List<T>::Insert(int position, T value)
     {
+        this->lock->lock();
         if( position >= this->size )
         {
             this->last->next = new Node<T>(value);
@@ -150,7 +164,7 @@ namespace List{
         {
             this->current = this->first;
             int count = 0;
-            
+
             while( count + 1 != position )
             {
                 Node<T>* helper = new Node<T>(value);
@@ -158,15 +172,17 @@ namespace List{
                 this->current->next = helper;
             }
         }
+
+        this->lock->unlock();
     }
 
     /*
     template <class T>
-    void List::Insert(int position, List<T>* source) 
+    void List::Insert(int position, List<T>* source)
     {
         if(source != nullptr)
         {
-            if(position == 0 || position == 1) 
+            if(position == 0 || position == 1)
             {
 
             }
@@ -177,13 +193,17 @@ namespace List{
     template <class T>
     void List<T>::Insert(T value)
     {
+        this->lock->lock();
         this->last->next = new Node<T>(value);
         this->last = this->last->next;
-    } 
+        this->lock->unlock();
+    }
 
     template <class T>
     void List<T>::Insert(List<T>* source) {
+        this->lock->lock();
         this->Add(source);
+        this->lock->unlock();
     }
 
     template <class T>
@@ -191,10 +211,11 @@ namespace List{
     {
         return this->current->value;
     }
-    
+
         template <class T>
     T List<T>::Show(int position)
     {
+        this->lock->lock();
         if( position <= this->size && position >= 1)
         {
             this->current = this->first;
@@ -204,27 +225,32 @@ namespace List{
                 this->current = this->current->next;
                 count++;
             }
-    
+            this->lock->unlock();
+
             return this->current->value;
         }
         else
         {
+            this->lock->unlock();
             return (T)NULL;
         }
     }
-    
+
     template <class T>
     void List<T>::Move()
     {
+        this->lock->lock();
         if( this->current->next != nullptr )
         {
             this->current = this->current->next;
         }
+        this->lock->unlock();
     }
-    
+
     template <class T>
     void List<T>::Move(int position)
     {
+        this->lock->lock();
         this->current = this->first;
         if( position > this->size )
         {
@@ -242,6 +268,7 @@ namespace List{
                 this->current  = this->current->next;
             }
         }
+        this->lock->unlock();
     }
 
     template <class T>
